@@ -21,17 +21,17 @@ class CdkDemosStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # # Create a S3 bucket
-        # bucket = s3.Bucket(self, 
-        #     "create-bucket", 
-        #     bucket_name="cdk-demo-bucket-"+Aws.ACCOUNT_ID, 
-        #     versioned=False,
-        #     removal_policy=RemovalPolicy.DESTROY,
-        #     enforce_ssl=True,
-        #     block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-        #     encryption=s3.BucketEncryption.S3_MANAGED)
+        # Create a S3 bucket
+        bucket = s3.Bucket(self, 
+            "create-bucket", 
+            bucket_name="cdk-demo-bucket-"+Aws.ACCOUNT_ID, 
+            versioned=False,
+            removal_policy=RemovalPolicy.DESTROY,
+            enforce_ssl=True,
+            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            encryption=s3.BucketEncryption.S3_MANAGED)
         
-        # CfnOutput(self, "BucketName", value=bucket.bucket_name)
+        CfnOutput(self, "BucketName", value=bucket.bucket_name)
 
         # # CDK for creating a dynamoDB table with name puneetsd and columns sessionid
         # table = dynamodb.Table(self, "puneetsd",
