@@ -33,36 +33,36 @@ class CdkDemosStack(Stack):
         
         CfnOutput(self, "BucketName", value=bucket.bucket_name)
 
-        # CDK for creating a dynamoDB table with name puneetsd and columns sessionid
-        table = dynamodb.Table(self, "puneetsd",
-            table_name="puneetsd",
-            partition_key=dynamodb.Attribute(
-                name="sessionid",
-                type=dynamodb.AttributeType.STRING
-            ),
-            removal_policy=RemovalPolicy.DESTROY
-        )
-        CfnOutput(self, "TableName", value=table.table_name)
+        # # CDK for creating a dynamoDB table with name puneetsd and columns sessionid
+        # table = dynamodb.Table(self, "puneetsd",
+        #     table_name="puneetsd",
+        #     partition_key=dynamodb.Attribute(
+        #         name="sessionid",
+        #         type=dynamodb.AttributeType.STRING
+        #     ),
+        #     removal_policy=RemovalPolicy.DESTROY
+        # )
+        # CfnOutput(self, "TableName", value=table.table_name)
 
-        # Create a Lambda function
-        pdf_to_image_function = lambda_.Function(
-            self, "cdk-demo-lambda",
-            runtime=lambda_.Runtime.PYTHON_3_8,
-            handler="test_lambda.handler",
-            function_name="cdk-demo-lambda-function-"+Aws.ACCOUNT_ID,
-            code=lambda_.Code.from_asset("cdk_demos/cdk_demo_lambdas"),
-            timeout=Duration.minutes(5),
-            memory_size=4096,
-            environment={
-                # "IMAGE_FOLDER": "images",
-                # "IMAGE_FORMAT": "png",
-                "LOG_LEVEL": "INFO",
-                # "PDF_FOLDER": "pdf-input"
-            }
-        )
+        # # Create a Lambda function
+        # pdf_to_image_function = lambda_.Function(
+        #     self, "cdk-demo-lambda",
+        #     runtime=lambda_.Runtime.PYTHON_3_8,
+        #     handler="test_lambda.handler",
+        #     function_name="cdk-demo-lambda-function-"+Aws.ACCOUNT_ID,
+        #     code=lambda_.Code.from_asset("cdk_demos/cdk_demo_lambdas"),
+        #     timeout=Duration.minutes(5),
+        #     memory_size=4096,
+        #     environment={
+        #         # "IMAGE_FOLDER": "images",
+        #         # "IMAGE_FORMAT": "png",
+        #         "LOG_LEVEL": "INFO",
+        #         # "PDF_FOLDER": "pdf-input"
+        #     }
+        # )
         
-        self.function = pdf_to_image_function
-        CfnOutput(self, "DemoLambda", value=pdf_to_image_function.function_name)
+        # self.function = pdf_to_image_function
+        # CfnOutput(self, "DemoLambda", value=pdf_to_image_function.function_name)
 
-        table.grant_read_data(pdf_to_image_function)
-        bucket.grant_read(pdf_to_image_function)
+        # table.grant_read_data(pdf_to_image_function)
+        # bucket.grant_read(pdf_to_image_function)
