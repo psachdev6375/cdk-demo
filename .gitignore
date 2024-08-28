@@ -6,6 +6,18 @@ __pycache__/
 # C extensions
 *.so
 
+*.swp
+package-lock.json
+__pycache__
+.pytest_cache
+.venv
+*.egg-info
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+
 # Distribution / packaging
 .Python
 build/
