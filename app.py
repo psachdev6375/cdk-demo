@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# Author puneetsd
 import os
 
 import aws_cdk as cdk
