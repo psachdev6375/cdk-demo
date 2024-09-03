@@ -24,7 +24,7 @@ class CdkDemosStack(Stack):
         # # Create a S3 bucket
         # bucket = s3.Bucket(self, 
         #     "create-bucket", 
-        #     bucket_name="cdk-demo-bucket-"+Aws.ACCOUNT_ID, 
+        #     bucket_name="cdk-demo-bucket-"+Aws.ACCOUNT_ID+"-"+Aws.REGION, 
         #     versioned=False,
         #     removal_policy=RemovalPolicy.DESTROY,
         #     enforce_ssl=True,
@@ -54,8 +54,6 @@ class CdkDemosStack(Stack):
         #     timeout=Duration.minutes(5),
         #     memory_size=4096,
         #     environment={
-        #         # "IMAGE_FOLDER": "images",
-        #         # "IMAGE_FORMAT": "png",
         #         "LOG_LEVEL": "INFO",
         #         # "PDF_FOLDER": "pdf-input"
         #     }
